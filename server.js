@@ -8,6 +8,8 @@ const myApp = require("./myApp");
 const express = require("express");
 const app = express();
 
+app.use("/public", express.static(__dirname + "public"));
+
 if (!process.env.DISABLE_XORIGIN) {
   app.use((req, res, next) => {
     const allowedOrigins = ["https://narrow-plane.gomix.me", "https://www.freecodecamp.com"];
@@ -20,7 +22,6 @@ if (!process.env.DISABLE_XORIGIN) {
     next();
   });
 }
-app.use(express.static(__dirname + "/public"));
 
 app.get("/", function (req, res) {
   res.sendFile(__dirname + "/views/index.html");
