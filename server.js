@@ -21,6 +21,10 @@ if (!process.env.DISABLE_XORIGIN) {
   });
 }
 
+app.get('/', function(req,res){
+  res.send('Response String')
+})
+
 const port = process.env.PORT || 3000;
 bGround.setupBackgroundApp(app, myApp, __dirname).listen(port, () => {
   bGround.log(`Node is listening on port ${port}...`);
