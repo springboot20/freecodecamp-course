@@ -20,9 +20,10 @@ if (!process.env.DISABLE_XORIGIN) {
     next();
   });
 }
+app.use(express.static(__dirname + "/public"));
 
 app.get("/", function (req, res) {
-  res.sendFile( __dirname + "/views/index.html");
+  res.sendFile(__dirname + "/views/index.html");
 });
 
 const port = process.env.PORT || 3000;
