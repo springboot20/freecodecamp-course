@@ -21,11 +21,9 @@ if (!process.env.DISABLE_XORIGIN) {
   });
 }
 
-let absolutePath = __dirname + "views/index.html";
-
 app.get("/", function (req, res) {
   res.send("Hello Express");
-  res.sendFile(absolutePath);
+  res.sendFile( __dirname + "./views/index.html");
 });
 
 const port = process.env.PORT || 3000;
