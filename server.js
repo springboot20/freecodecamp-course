@@ -10,7 +10,7 @@ const app = express();
 
 require("dotenv").config();
 
-console.log(process.env.MESSAGE_STYLE)
+console.log(process.env.MESSAGE_STYLE);
 
 if (!process.env.DISABLE_XORIGIN) {
   app.use((req, res, next) => {
@@ -26,6 +26,10 @@ if (!process.env.DISABLE_XORIGIN) {
 }
 
 app.use("/public", express.static(__dirname + "/public"));
+app.use((req, res, next) => {
+  console.log(req.method + " " + req.path + " - " + req.ip);
+  next();
+});
 
 app.get("/", function (req, res) {
   res.sendFile(__dirname + "/views/index.html");
