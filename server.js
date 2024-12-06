@@ -43,9 +43,15 @@ app.get("/json", function (req, res) {
   res.json({ message });
 });
 
-app.get("/now", function (req, res) {
-  res.json({ time: new Date(req.time).toString() });
-});
+app.get(
+  "/now",
+  function (req, res, next) {
+    req.time = new Date().toString();
+  },
+  (req, res) => {
+    res.json({ time: req.time });
+  },
+);
 
 const port = process.env.PORT || 3000;
 bGround.setupBackgroundApp(app, myApp, __dirname).listen(port, () => {
